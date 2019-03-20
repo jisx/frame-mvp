@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+static def buildTime() {
+    return new Date().format("yyyy_MM_dd_HH_ss");
+}
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    defaultConfig {
+        applicationId "com.frame.mvp"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        //打包时间
+        resValue "string", "build_time", buildTime()
+
+        //生成的文档路径build/generated/source/apt/(debug or release)/com/alibaba/android/arouter/docs/arouter-map-of-${moduleName}.json
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['release.key.alias']
+            keyPassword keystoreProperties['release.key.password']
+            storeFile file(keystoreProperties['release.store.file'])
+            storePassword keystoreProperties['release.store.password']
+        }
+        debug {
+            keyAlias keystoreProperties['debug.key.alias']
+            keyPassword keystoreProperties['debug.key.password']
+            storeFile file(keystoreProperties['debug.store.file'])
+            storePassword keystoreProperties['debug.store.password']
+        }
+    }
+
+    buildTypes {
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            // 自定义输出配置
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    outputFileName = "${variant.buildType.name}-V${defaultConfig.versionName}_${buildTime()}.apk"
+                }
+            }
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        tencent {
+            dimension "default"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.support.multidex
+    implementation project(':lib_common')
+//    if (!isModule.toBoolean()) {
+//        implementation project(':module_main')
+//        implementation project(':module_girls')
+//        implementation project(':module_news')
+//    }
+}

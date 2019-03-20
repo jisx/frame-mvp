@@ -1,0 +1,29 @@
+buildscript {
+    apply from: 'versions.gradle'
+    addRepos(repositories)
+    dependencies {
+        classpath deps.android_gradle_plugin
+        classpath deps.kotlin.plugin
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+allprojects {
+    addRepos(repositories)
+
+    // 组件缓存更新时间设置（默认每次build都更新）
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 0, 'minutes'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+repositories {
+    google()
+}
