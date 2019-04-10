@@ -10,7 +10,7 @@ import com.frame.mvp.common.base.BaseApplication
  * @version V1.2.0
  * @name HomeApplication
  */
-class HomeApplication : BaseApplication() {
+class MainApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()

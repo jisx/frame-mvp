@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -54,18 +55,22 @@ dependencies {
     api deps.dagger.android
     api deps.dagger.android_support
 
+    //Glide
+    api deps.glide.lib
+    api deps.glide.okhttp3
+
     // other
     api deps.kotlin.stdlib
     api deps.event_bus
     api deps.gson
     api deps.permission
     api deps.utils
-    api deps.glide
 
     //router
     api deps.arouter_api
 
     //annotationProcessor
-    annotationProcessor deps.dagger.android_support_compiler
-    annotationProcessor deps.dagger.compiler
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.compiler
+    kapt deps.glide.compiler
 }

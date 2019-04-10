@@ -38,7 +38,7 @@ object ImageUtils {
      * 设置加载动画
      * api也提供了几个常用的动画：比如crossFade()
      */
-    fun loadImageViewAnim(path: String, anim: Int, mImageView: ImageView) {
+    fun loadImageViewAnim(path: String, mImageView: ImageView) {
         Glide.with(mImageView.context).load(path).dontAnimate().into(mImageView)
     }
 

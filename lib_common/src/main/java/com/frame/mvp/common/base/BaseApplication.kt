@@ -18,37 +18,21 @@ import androidx.multidex.MultiDex
  */
 open class BaseApplication : Application() {
 
-    private var mAppDelegateList: List<IApplicationDelegate>? = null
-
     override fun onCreate() {
         super.onCreate()
-        mAppDelegateList = ClassUtils.getObjectsWithInterface(this, IApplicationDelegate::class.java, ROOT_PACKAGE)
-        for (delegate in mAppDelegateList!!) {
-            delegate.onCreate()
-        }
-
     }
 
     override fun onTerminate() {
         super.onTerminate()
-        for (delegate in mAppDelegateList!!) {
-            delegate.onTerminate()
-        }
     }
 
 
     override fun onLowMemory() {
         super.onLowMemory()
-        for (delegate in mAppDelegateList!!) {
-            delegate.onLowMemory()
-        }
     }
 
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
-        for (delegate in mAppDelegateList!!) {
-            delegate.onTrimMemory(level)
-        }
     }
 
     override fun attachBaseContext(base: Context) {

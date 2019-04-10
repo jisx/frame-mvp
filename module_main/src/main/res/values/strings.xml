@@ -1,0 +1,7 @@
+<resources>
+    <string name="main_name">module_main</string>
+    <array name="main_tab">
+        <item>com.frame.mvp.category.CategoryFragment</item>
+        <item>com.frame.mvp.home.HomeFragment</item>
+    </array>
+</resources>
