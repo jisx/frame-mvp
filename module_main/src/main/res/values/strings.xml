@@ -1,7 +1,11 @@
 <resources>
     <string name="main_name">module_main</string>
-    <array name="main_tab">
+    <array name="main_tab_fragment">
         <item>com.frame.mvp.category.CategoryFragment</item>
         <item>com.frame.mvp.home.HomeFragment</item>
+    </array>
+    <array name="main_tab_title">
+        <item>分类</item>
+        <item>主页</item>
     </array>
 </resources>

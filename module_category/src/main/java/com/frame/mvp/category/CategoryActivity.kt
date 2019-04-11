@@ -8,9 +8,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.app_bar_category.*
 
+@Route(path = "/main/category")
 class CategoryActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {

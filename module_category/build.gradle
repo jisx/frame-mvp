@@ -3,6 +3,7 @@ if (isModule.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -51,6 +52,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
-    annotationProcessor deps.arouter_compiler
+    kapt deps.arouter_compiler
     implementation project(':lib_common')
 }
