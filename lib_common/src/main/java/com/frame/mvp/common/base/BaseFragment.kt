@@ -1,16 +1,10 @@
 package com.frame.mvp.common.base
 
 import android.content.Context
+import android.os.Bundle
 import androidx.annotation.Keep
+import androidx.annotation.LayoutRes
 
-
-/**
- *
- * Fragment的基类
- *
- * @author 张华洋
- * @name BaseFragment
- */
 @Keep
 abstract class BaseFragment : androidx.fragment.app.Fragment() {
 
@@ -25,5 +19,9 @@ abstract class BaseFragment : androidx.fragment.app.Fragment() {
         super.onAttach(context)
         this.holdingActivity = context as BaseActivity?
     }
+
+    @LayoutRes
+    protected abstract fun layoutId(): Int
+    protected abstract fun initView(savedInstanceState: Bundle?)
 
 }

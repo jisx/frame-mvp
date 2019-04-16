@@ -1,5 +1,7 @@
 package debug
 
+import com.alibaba.android.arouter.launcher.ARouter
+import com.frame.mvp.category.BuildConfig
 import com.frame.mvp.common.base.BaseApplication
 
 /**
@@ -14,13 +16,11 @@ class CategoryApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        login()
-    }
-
-    /**
-     * 在这里模拟登陆，然后拿到sessionId或者Token
-     * 这样就能够在组件请求接口了
-     */
-    private fun login() {
+        if (BuildConfig.DEBUG) {
+            //开启InstantRun之后，一定要在ARouter.init之前调用openDebug
+            ARouter.openDebug()
+            ARouter.openLog()
+        }
+        ARouter.init(this)
     }
 }

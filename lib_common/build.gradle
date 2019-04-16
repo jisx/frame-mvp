@@ -44,6 +44,9 @@ dependencies {
     api deps.support.multidex
 
     // RxJava and retrofit
+    api deps.okHttp.logging
+    api deps.okHttp.okhttp3
+
     api deps.rx_android
     api deps.rxjava2
     api deps.retrofit.runtime
@@ -65,6 +68,7 @@ dependencies {
     api deps.gson
     api deps.permission
     api deps.utils
+    api deps.logger
 
     //router
     api deps.arouter_api

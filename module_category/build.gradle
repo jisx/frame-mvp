@@ -51,7 +51,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     kapt deps.arouter_compiler
     implementation project(':lib_common')
 }

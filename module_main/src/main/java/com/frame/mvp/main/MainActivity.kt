@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.frame.mvp.common.bean.FragmentBean
+import com.frame.mvp.home.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 @Route(path = "/main/main")

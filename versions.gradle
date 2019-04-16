@@ -12,6 +12,7 @@ versions.glide = "4.9.0"
 versions.rxjava2 = "2.2.7"
 versions.rx_android = "2.1.1"
 versions.retrofit = "2.5.0"
+versions.okhttp = "3.14.1"
 versions.event_bus = "3.1.1"
 versions.gson = "2.8.5"
 versions.permission = "2.0.0"
@@ -38,9 +39,15 @@ support.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.androi
 support.multidex = "androidx.multidex:multidex:$versions.multidex"
 deps.support = support
 
+def okHttp = [:]
+okHttp.logging= "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+okHttp.okhttp3= "com.squareup.okhttp3:okhttp:$versions.okhttp"
+deps.okHttp = okHttp
+
 def retrofit = [:]
 retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
 retrofit.adapter = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.inter = "com.squareup.okhttp3:logging-interceptor:"
 retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
 deps.retrofit = retrofit
 

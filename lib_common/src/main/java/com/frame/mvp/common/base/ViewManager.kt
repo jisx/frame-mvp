@@ -7,16 +7,12 @@ import androidx.annotation.Keep
 import java.util.Stack
 
 /**
- *
- *
- *
- * @author 张华洋 2017/9/26 22:26
- * @version V1.1
+ * 单例模式，记录所有activity,方便退出应用
+ * @author jsx
+ * @since V1.0
  */
 @Keep
-enum class ViewManager {
-
-    INSTANCE;
+object ViewManager {
 
     private var activityStack: Stack<Activity>? = null
 
